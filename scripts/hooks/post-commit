@@ -1,0 +1,15 @@
+#!/bin/bash
+# Hook git: post-commit
+# Chama o script PowerShell que sincroniza o último commit com o vault Obsidian.
+#
+# Instalação (copiar para .git/hooks/):
+#   cp scripts/hooks/post-commit .git/hooks/post-commit
+#   chmod +x .git/hooks/post-commit
+
+SCRIPT="$(git rev-parse --show-toplevel)/scripts/sync-obsidian.ps1"
+
+if [ -f "$SCRIPT" ]; then
+  powershell -ExecutionPolicy Bypass -NoProfile -File "$SCRIPT"
+else
+  echo "[Obsidian] sync-obsidian.ps1 nao encontrado em scripts/. Hook ignorado."
+fi

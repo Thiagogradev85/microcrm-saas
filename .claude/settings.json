@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo *)",
+      "Bash(npm --version)",
+      "Bash(npx create-docusaurus@latest . classic --typescript --skip-install)",
+      "Bash(npx create-docusaurus@latest docs-temp classic --typescript --skip-install)",
+      "Bash(git config *)",
+      "Bash(git branch *)",
+      "Bash(gh run *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\thiag\\Documents\\Projetos\\docs-temp",
+      "C:\\Users\\thiag\\Documents\\Projetos\\microcrm-saas-docs"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NoProfile -File scripts/obsidian-session-start.ps1",
+            "timeout": 10,
+            "statusMessage": "Carregando contexto do Obsidian..."
+          }
+        ]
+      }
+    ]
+  }
+}

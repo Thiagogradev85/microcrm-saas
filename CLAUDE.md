@@ -1,5 +1,48 @@
 # Micro CRM SaaS
 
+## Memória do Projeto — Obsidian (ler PRIMEIRO)
+
+**Vault:** `C:\Users\thiag\Documents\Obsidian Vault\Micro-CRM-SAAS\`
+
+O vault Obsidian é a memória persistente do projeto. Antes de qualquer sessão, leia as três notas abaixo. Após modificações, atualize as notas afetadas.
+
+### Leia ao iniciar toda sessão
+1. `00 - Índice.md` — hub central
+2. `05 - Progresso/Estado Atual.md` — o que existe no código hoje
+3. `06 - Próximos Passos/Próximos Passos.md` — o que fazer
+
+### Atualize ao finalizar a sessão
+| O que aconteceu | Arquivo Obsidian a atualizar |
+|----------------|------------------------------|
+| Criou/modificou .cs | `05 - Progresso/Estado Atual.md` |
+| Fez commit importante | `05 - Progresso/Commits Importantes.md` (automático via hook) |
+| Tomou decisão estratégica | `04 - Decisões/Decisões Estratégicas.md` |
+| Próximo passo mudou | `06 - Próximos Passos/Próximos Passos.md` |
+| Módulo implementado | `02 - Arquitetura/Módulos MVP.md` **+ README.md** |
+| Stack ou arquitetura mudou | `01 - Projeto/Stack Tecnológica.md` **+ README.md** |
+
+### Quando atualizar o README.md
+O README é para quem baixa o projeto — deve conter instruções de instalação e uso sempre atualizadas. Atualize quando:
+- Um módulo sair de "pasta vazia" para "implementado" (mude o Status de cada módulo)
+- A fase do projeto mudar (MVP → Fase 2)
+- Um pré-requisito de instalação mudar (novo serviço externo, novo SDK, etc.)
+
+### Quando atualizar o Docusaurus (microcrm-saas-docs)
+Repo: https://github.com/Thiagogradev85/microcrm-saas-docs  
+Clone local: `C:\Users\thiag\Documents\Projetos\microcrm-saas-docs`
+
+Atualize quando:
+- Uma decisão de arquitetura for tomada → `docs/arquitetura/`
+- Um módulo for implementado → criar `docs/modulos/<nome>.md`
+- Um guia de uso ou instalação mudar → `docs/guias/`
+- Após atualizar, commitar e dar push no repo de docs separado
+
+### Sync automático
+O hook `.git/hooks/post-commit` chama `scripts/sync-obsidian.ps1` a cada commit.
+Para sync completo manual: `powershell -File scripts/sync-obsidian.ps1 -Full`
+
+---
+
 ## Visão geral
 
 CRM vendido para empresas (B2B), modelo multitenant. Projeto **novo do zero** em .NET 10 — não é uma versão evoluída do projeto anterior em Node.js. O foco do MVP é ser vendável: ter funcionalidades suficientes para começar a abordar clientes reais.
@@ -50,6 +93,9 @@ CRM vendido para empresas (B2B), modelo multitenant. Projeto **novo do zero** em
 - **TanStack Query** — cache, sincronização e invalidação de dados do servidor
 - **Zod** — validação de schemas tipada
 - **React Hook Form** — formulários performáticos
+
+**Princípio obrigatório: Mobile First**
+Todo componente, layout e estilo começa pelo mobile e expande para telas maiores via breakpoints Tailwind (`sm:`, `md:`, `lg:`). Nunca projetar desktop e adaptar para mobile depois.
 
 ### Infraestrutura (free tier para MVP)
 - **PostgreSQL** via Neon (serverless)
