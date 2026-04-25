@@ -83,7 +83,7 @@ CRM vendido para empresas (B2B), modelo multitenant. Projeto **novo do zero** em
 - **Refresh Tokens** — armazenados no banco, renovam o JWT sem novo login
 - **MediatR** — padrão CQRS, um handler por Command/Query
 - **FluentValidation** — validators por Command
-- **MassTransit 8.x** — abstração sobre RabbitMQ
+- **RabbitMQ.Client** — cliente oficial RabbitMQ direto (exchanges, queues, bindings, ack/nack manual)
 - **Serilog** — logs estruturados em JSON
 - **OpenTelemetry** — traces e métricas
 - **Swagger/OpenAPI** — documentação dos endpoints
@@ -113,7 +113,7 @@ Todo componente, layout e estilo começa pelo mobile e expande para telas maiore
 
 ### Padrão: Monolito Modular + DDD
 
-Um único executável/deploy, porém internamente dividido em **Bounded Contexts** (módulos) com forte isolamento. Cada módulo tem seu próprio banco/schema e se comunica com os outros **apenas via Domain Events** publicados no RabbitMQ (MassTransit). Proibido chamada direta entre módulos.
+Um único executável/deploy, porém internamente dividido em **Bounded Contexts** (módulos) com forte isolamento. Cada módulo tem seu próprio banco/schema e se comunica com os outros **apenas via Domain Events** publicados no RabbitMQ (RabbitMQ.Client direto). Proibido chamada direta entre módulos.
 
 ### Estrutura de projetos (.csproj)
 
@@ -173,7 +173,7 @@ Contém **apenas abstrações puras** reutilizadas por todos os módulos:
 | 7 | Reports | MVP | Dashboard e relatórios básicos |
 | 8 | Goals | Fase 2 | Metas mensais por vendedor |
 | 9 | Catalog | Fase 2 | Catálogos e produtos em PDF |
-| 10 | Messaging | Fase 2 | Campanhas e-mail e WhatsApp (Saga MassTransit) |
+| 10 | Messaging | Fase 2 | Campanhas e-mail e WhatsApp (saga com estado manual via RabbitMQ) |
 | 11 | Prospecting | Fase 3 | Busca via Google Maps e APIs externas |
 | 12 | Settings | Fase 2 | Configurações por tenant |
 
