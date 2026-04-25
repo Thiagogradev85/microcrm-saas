@@ -245,6 +245,23 @@ Estas são **invariantes** — o código DEVE garantir:
 - **Construtor de domínio é privado** (`private Client() { }` para o EF) e instâncias são criadas via **factory methods estáticos** (`Client.Create(...)`) que validam invariantes.
 - **Commands retornam `Result<T>`** ou lançam `AppError`. Nunca lançam `Exception` genérica.
 - **Handlers MediatR** ficam em `Application/Commands/<Feature>/<FeatureCommandHandler>.cs`.
+- **DTOs são Records** — imutáveis por padrão, igualdade por valor, menos código. Ex: `public record CreateClientDto(string Name, string Email);`
+- **Nunca retornar tuplas em métodos públicos** — use `Result<T>`, Record ou classe DTO. Tuplas são aceitáveis apenas em métodos privados simples.
+
+### ORM — EF Core + Dapper (padrão híbrido CQRS)
+Fonte oficial: [Microsoft — Infrastructure persistence layer with EF Core](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implementation-entity-framework-core)
+
+- **EF Core** → lado de **Commands** (escrita): transações, agregados DDD, change tracking, HasQueryFilter para multitenant
+- **Dapper** → lado de **Queries** (leitura): relatórios complexos, projeções de leitura, performance crítica (adicionar quando o módulo Reports evoluir)
+- Dapper NÃO substitui EF Core — os dois coexistem no mesmo projeto
+
+### Naming Conventions — Microsoft Official
+Fonte: [Microsoft Design Guidelines](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions)
+
+- **Interfaces:** sempre prefixo `I` — `IRepository<T>`, `ICurrentUser`
+- **Propriedades booleanas:** prefixo `Is`, `Can`, `Has` — `IsActive`, `CanDelete`, `HasTenant`
+- **Métodos assíncronos:** sufixo `Async` — `CreateClientAsync()`, `GetByIdAsync()`
+- **Namespaces:** `MicroCrm.NomeModulo.Camada` — `MicroCrm.Clients.Domain`
 
 ### Testes
 - Estrutura espelha o src: `tests/Modules/Clients.Tests/...`
