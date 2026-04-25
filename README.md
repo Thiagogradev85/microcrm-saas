@@ -10,7 +10,7 @@
 3. Fecha o VS Code
 ```
 
-**Backend:** .NET 10 · ASP.NET Core (Minimal API) · EF Core · MediatR · MassTransit · FluentValidation · Serilog · OpenTelemetry  
+**Backend:** .NET 10 · ASP.NET Core (Minimal API) · EF Core · MediatR · MassTransit · FluentValidation · ASP.NET Core Identity · JWT Bearer · Refresh Tokens · Serilog · OpenTelemetry  
 **Frontend:** React 18 · Vite · Tailwind CSS · TanStack Query · dnd-kit · Zod · React Hook Form  
 **Infra:** PostgreSQL (Neon) · RabbitMQ (CloudAMQP) · Redis (Upstash) · Render · GitHub Actions
 

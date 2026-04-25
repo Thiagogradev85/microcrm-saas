@@ -55,9 +55,9 @@ CRM vendido para empresas (B2B), modelo multitenant. Projeto **novo do zero** em
 
 ## Sobre o desenvolvedor
 
-**Thiago Gramuglia** está aprendendo C# e .NET do zero enquanto constrói este projeto.
+**Thiago Gramuglia** está aprendendo C# e .NET do zero enquanto constrói este projeto, é desenvolvedor .net Junior com pouquissima esperencia.
 
-- **Background:** tem experiência com Node.js e React
+- **Background:** tem experiência com Node.js e React mas é iniciante tambem e esta aprendendo enquanto faz o projeto
 - **Nível em .NET:** iniciante
 - **Ambiente:** VS Code + Claude Code (casa), dotnetfiddle.net (trabalho)
 - **CNPJ:** 64.828.611/0001-05
@@ -78,6 +78,9 @@ CRM vendido para empresas (B2B), modelo multitenant. Projeto **novo do zero** em
 - **.NET 10 LTS** (SDK travado via `global.json` em 10.0.202)
 - **ASP.NET Core 10** (Minimal APIs para endpoints, salvo exceção)
 - **EF Core 10** com filtro global por `TenantId` (via `HasQueryFilter`)
+- **ASP.NET Core Identity** — gerenciamento de usuários, senhas (hash PBKDF2), roles e claims
+- **JWT Bearer Tokens** — autenticação stateless; `TenantId` e `Role` viajam nos claims
+- **Refresh Tokens** — armazenados no banco, renovam o JWT sem novo login
 - **MediatR** — padrão CQRS, um handler por Command/Query
 - **FluentValidation** — validators por Command
 - **MassTransit 8.x** — abstração sobre RabbitMQ
