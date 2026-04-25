@@ -247,6 +247,7 @@ Estas são **invariantes** — o código DEVE garantir:
 - **Handlers MediatR** ficam em `Application/Commands/<Feature>/<FeatureCommandHandler>.cs`.
 - **DTOs são Records** — imutáveis por padrão, igualdade por valor, menos código. Ex: `public record CreateClientDto(string Name, string Email);`
 - **Nunca retornar tuplas em métodos públicos** — use `Result<T>`, Record ou classe DTO. Tuplas são aceitáveis apenas em métodos privados simples.
+- **`Result<T>` é o padrão principal do projeto** — todo método público que pode falhar retorna `Result<T>`. É o padrão mais visto no mercado para .NET profissional.
 
 ### ORM — EF Core + Dapper (padrão híbrido CQRS)
 Fonte oficial: [Microsoft — Infrastructure persistence layer with EF Core](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implementation-entity-framework-core)
