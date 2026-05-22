@@ -187,7 +187,7 @@ dotnet add package MediatR                                    # NuGet (jamais no
 
 ## 🗂 Estado atual e ordem do MVP
 
-**Hoje:** setup inicial — `MicroCrm.sln`, `global.json`, `SharedKernel.csproj` criados; pastas dos módulos vazias; nenhuma classe C# ainda. **Próximo passo (Aula 02):** base do SharedKernel (`Entity`, `AggregateRoot`, `ValueObject`, `AppError`, interfaces).
+**Hoje:** SharedKernel base implementado (`Entity`, `AggregateRoot`, `ValueObject`, `IDomainEvent`, hierarquia `AppError`, `Result`/`Result<T>` e interfaces transversais) — build limpo. Módulos ainda são pastas vazias. **Próximo passo (Aula 03):** Infrastructure base + middlewares globais (TenantContext, CurrentUser, ExceptionHandler).
 
 > Antes de codar, **sempre conferir** `05 - Progresso/Estado Atual.md` e `06 - Próximos Passos/Próximos Passos.md` — o vault é fonte de verdade.
 
